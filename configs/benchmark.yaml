@@ -1,0 +1,37 @@
+seed: 42
+
+models:
+  default: HuggingFaceTB/SmolLM2-135M
+  stress: HuggingFaceTB/SmolLM2-360M
+  control: distilgpt2
+
+training:
+  output_dir: outputs/cpt
+  max_steps: 200
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 3.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  logging_steps: 10
+  eval_steps: 50
+  save_steps: 100
+  bf16: false
+  fp16: false
+
+replay:
+  ratios: [0.0, 0.1, 0.25, 0.5]
+
+# Replace with your own sources.
+datasets:
+  replay:
+    path: json
+    data_files: data/replay.jsonl
+  new_domain:
+    path: json
+    data_files: data/new_domain.jsonl
+
+text_column: text
+max_length: 512
+num_proc: 2
