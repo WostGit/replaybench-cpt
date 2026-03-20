@@ -1,0 +1,7 @@
+transformers>=4.57.0
+datasets>=3.1.0
+tokenizers>=0.20.0
+sentencepiece>=0.2.0
+accelerate>=1.0.0
+torch>=2.3.0
+PyYAML>=6.0.0
